@@ -1,8 +1,8 @@
 
 ##Results from playground
-![alt text](https://github.com/kashikhan1/text-to-sql-generator-frontend/1.jpg?raw=true)
-![alt text](https://github.com/kashikhan1/text-to-sql-generator-frontend/2.jpg?raw=true)
-![alt text](https://github.com/kashikhan1/text-to-sql-generator-frontend/3.jpg?raw=true)
+![alt text](https://github.com/kashikhan1/text-to-sql-generator-frontend/blob/main/1.jpg?raw=true)
+![alt text](https://github.com/kashikhan1/text-to-sql-generator-frontend/blob/main/2.jpg?raw=true)
+![alt text](https://github.com/kashikhan1/text-to-sql-generator-frontend/blob/main/3.jpg?raw=true)
 
 
 <div align="center"><strong>Next.js TEXT TO SQL GENERATOR</strong></div>

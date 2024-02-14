@@ -1,79 +1,73 @@
 'use client';
 
-import { Card, Metric, Text, Title, BarList, Flex, Grid } from '@tremor/react';
+import { Card, Grid, Textarea, Button } from '@tremor/react';
 import Chart from './chart';
-
-const website = [
-  { name: '/home', value: 1230 },
-  { name: '/contact', value: 751 },
-  { name: '/gallery', value: 471 },
-  { name: '/august-discount-offer', value: 280 },
-  { name: '/case-studies', value: 78 }
-];
-
-const shop = [
-  { name: '/home', value: 453 },
-  { name: '/imprint', value: 351 },
-  { name: '/shop', value: 271 },
-  { name: '/pricing', value: 191 }
-];
-
-const app = [
-  { name: '/shop', value: 789 },
-  { name: '/product-features', value: 676 },
-  { name: '/about', value: 564 },
-  { name: '/login', value: 234 },
-  { name: '/downloads', value: 191 }
-];
-
-const data = [
-  {
-    category: 'Website',
-    stat: '10,234',
-    data: website
-  },
-  {
-    category: 'Online Shop',
-    stat: '12,543',
-    data: shop
-  },
-  {
-    category: 'Mobile App',
-    stat: '2,543',
-    data: app
-  }
-];
+import React from 'react';
+import RecordsTable from '../dynamictable';
 
 export default function PlaygroundPage() {
+  const [value, setValue] = React.useState("");
+  const [query, setQuery] = React.useState("");
+  const [records, setRecords] = React.useState([]);
+
+  React.useEffect(() => {
+    if (query) {
+      getQueryAndData(query)
+        .then((data) => {
+          console.log(data);
+          setQuery(data.data.query)
+          setRecords(data.data.records)
+        })
+    }
+  }, [query])
+
+
+  async function getQueryAndData(search: any) {
+    const res = await fetch(`http://127.0.0.1:8000/get-query/${search}`)
+    // const res = await fetch(`http://127.0.0.1:8000/execute`)
+    const data = await res.json()
+    return data
+  }
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
-      <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
-        {data.map((item) => (
-          <Card key={item.category}>
-            <Title>{item.category}</Title>
-            <Flex
-              justifyContent="start"
-              alignItems="baseline"
-              className="space-x-2"
-            >
-              <Metric>{item.stat}</Metric>
-              <Text>Total views</Text>
-            </Flex>
-            <Flex className="mt-6">
-              <Text>Pages</Text>
-              <Text className="text-right">Views</Text>
-            </Flex>
-            <BarList
-              data={item.data}
-              valueFormatter={(number: number) =>
-                Intl.NumberFormat('us').format(number).toString()
-              }
-              className="mt-2"
-            />
-          </Card>
-        ))}
+      <Grid className="gap-6">
+        <Card>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setQuery(value);
+            }}
+          >
+            <div className="flex flex-col gap-2">
+              <Textarea
+                onChange={(e) => setValue(e.target.value)}
+                id="description"
+                placeholder="please ask me question which product sold the most?"
+                value={value}
+              />
+            </div>
+            <Button className='float-right mt-8' size="sm" variant="secondary" type='submit'>
+              Submit
+            </Button>
+          </form>
+        </Card>
       </Grid>
-      <Chart />
+      <Card className="mt-6">
+       <h1 >data table for query : {value}</h1>
+
+        <RecordsTable records={records} />
+      </Card>
+      <Card>
+            <div className="flex flex-col gap-2">
+              <h1 >SQL Query for:  {value}</h1>
+              <Textarea
+                id="description"
+                placeholder="once query is executed its shows here"
+                value={query || ''}
+              />
+            </div>
+        </Card>
+      <Chart records={records} question={value} />
     </main>
   );
 }

@@ -107,7 +107,7 @@ export default function Navbar({ user }: { user: any }) {
                         </Menu.Item>
                       ) : (
                         <Menu.Item>
-                          {({ active }) => (
+                          {/* {({ active }) => (
                             <button
                               className={classNames(
                                 active ? 'bg-gray-100' : '',
@@ -117,7 +117,7 @@ export default function Navbar({ user }: { user: any }) {
                             >
                               Sign in
                             </button>
-                          )}
+                          )} */}
                         </Menu.Item>
                       )}
                     </Menu.Items>
@@ -189,12 +189,12 @@ export default function Navbar({ user }: { user: any }) {
                 </>
               ) : (
                 <div className="mt-3 space-y-1">
-                  <button
+                  {/* <button
                     onClick={() => signIn('github')}
                     className="flex w-full px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                   >
                     Sign in
-                  </button>
+                  </button> */}
                 </div>
               )}
             </div>

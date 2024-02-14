@@ -1,28 +1,37 @@
-import { sql } from '@vercel/postgres';
 import { Card, Title, Text } from '@tremor/react';
 import Search from './search';
 import UsersTable from './table';
 
 interface User {
   id: number;
-  name: string;
+  firstName: string;
   username: string;
   email: string;
 }
 
-export default async function IndexPage({
-  searchParams
-}: {
-  searchParams: { q: string };
-}) {
-  const search = searchParams.q ?? '';
-  const result = await sql`
-    SELECT id, name, username, email 
-    FROM users 
-    WHERE name ILIKE ${'%' + search + '%'};
-  `;
-  const users = result.rows as User[];
+async function getUsers(search: any) {
+  const res = await fetch(`https://dummyjson.com/users${search ? `/search?q=${search}` : ''}`)
 
+  console.log(`https://dummyjson.com/users?${search ? `search?q=${search}` : ''}`)
+ 
+  const data = await res.json()
+
+  // console.log(data)
+
+  return data.users
+}
+ 
+export default async function Page({
+    searchParams
+  }: {
+    searchParams: { q: string };
+  }) {
+  const search = searchParams.q ?? '';
+
+  const getUsersList = await getUsers(search)
+
+  const users = getUsersList;
+ 
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
       <Title>Users</Title>

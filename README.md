@@ -1,11 +1,12 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/9113740/201498864-2a900c64-d88f-4ed4-b5cf-770bcb57e1f5.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/9113740/201498152-b171abb8-9225-487a-821c-6ff49ee48579.png">
-  <img alt="Shows all of the tools in the stack for this template, also listed in the README file." src="https://user-images.githubusercontent.com/9113740/201498152-b171abb8-9225-487a-821c-6ff49ee48579.png">
-</picture>
 
-<div align="center"><strong>Next.js 14 Admin Dashboard Template</strong></div>
-<div align="center">Built with the Next.js App Router</div>
+##Results from playground
+![alt text](https://github.com/kashikhan1/text-to-sql-generator-frontend/1.jpg?raw=true)
+![alt text](https://github.com/kashikhan1/text-to-sql-generator-frontend/2.jpg?raw=true)
+![alt text](https://github.com/kashikhan1/text-to-sql-generator-frontend/3.jpg?raw=true)
+
+
+<div align="center"><strong>Next.js TEXT TO SQL GENERATOR</strong></div>
+<div align="center">app for text to sql generator</div>
 <br />
 <div align="center">
 <a href="http://admin-dash-template.vercel.sh/">Demo</a>
@@ -35,22 +36,6 @@ This template uses the new Next.js App Router. This includes support for enhance
 
 During the deployment, Vercel will prompt you to create a new Postgres database. This will add the necessary environment variables to your project.
 
-Inside the Vercel Postgres dashboard, create a table based on the schema defined in this repository.
-
-```
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  email VARCHAR(255) NOT NULL,
-  name VARCHAR(255),
-  username VARCHAR(255)
-);
-```
-
-Insert a row for testing:
-
-```
-INSERT INTO users (id, email, name, username) VALUES (1, 'me@site.com', 'Me', 'username');
-```
 
 Finally, run the following commands to start the development server:
 
